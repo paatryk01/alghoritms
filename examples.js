@@ -419,6 +419,15 @@ var capitals = function (word) {
   return arr;
 };
 
+// potegowanie rekurencja exponentiation 
+
+function expo(num, e){
+	if(e === 0) return 1;
+	else{
+		return num * expo(num, e-1);
+	}
+}
+
 // FIBONACCI rekurencja
 
 function fibo(n){
