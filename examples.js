@@ -453,5 +453,3 @@ function fibo(n){
 	}
 	return temp;
 }
-
-
