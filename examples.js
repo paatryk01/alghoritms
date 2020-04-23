@@ -1,14 +1,14 @@
-// The longest word
+// Return the longest word and length of this word.
 
-let string = "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.";
+let str = "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.";
 
 function longestWord(str){
-	let words = str.split(' '); //Tworzy się nowa tablica z każdym słowem po spacji.
+	let words = str.split(' ');
 	maxLength = 0;
 	word='';
 
 	for(var i = 0; i < words.length; i++){
-		if(words[i].length > maxLength){ //Jeżeli dane słowo jest dłuższe niż aktualny max, to jest nowym maxem.
+		if(words[i].length > maxLength){
 			maxLength = words[i].length;
 			word = words[i];
 		}
@@ -16,7 +16,7 @@ function longestWord(str){
 	return [word, maxLength];
 }
 
-// The longest word Recursive
+// The longest word. Recursive method.
 
 function longestWordRecursive(str){
 	str = str.split(' ');
@@ -28,7 +28,7 @@ function longestWordRecursive(str){
 		return longestWordRecursive(str.join(' '));
 	}
 	if(str[0].length <= str[1].length){
-		return longestWordRecursive(str.slice(1, str.length).join(' '));
+		return longestWordRecursive(str.slice(1, str.length).join(' ')); //Wykonuje funkcję dla nowej kopii tablicy za wyjątkiem 1 elementu.
 	}
 	return str.length;
 }
@@ -39,7 +39,6 @@ console.log(longestWordRecursive(string));
 
 function isPalindrom(str){
 	let reversed = str.split('').reverse().join('');
-	
 	return str === reversed ? true : false;
 }
 
@@ -49,14 +48,14 @@ let baseArray = [23, 12, 34, 234, 78, 153, 987, 12, 43, 67],
     filterArray = [34, 67, 32, 34, 98, 54, 67, 89, 345, 234];
 
 function filter(arr, arr1){
-	return arr.filter((val) => {
+	return arr.filter((val) => { // Filter tworzy nową tablicę, która spełnia dany warunek.
 		return !arr1.includes(val);
 	});
 }
 
 console.log(filter(baseArray, filterArray));
 
-// Cyfra w odpowiednium miejscu
+// Find index of new number added to array.
 
 function findII(arr,num){
 	arr.push(num);
@@ -69,12 +68,12 @@ function findII(arr,num){
 // Encrypt - Szyfr Cezara
 
 function encrypt(str) {
-    return str.split('').map((char) => {
+    return str.split('').map((char) => { //Tworzymy nową tablicę, do której dodajemy literę pobraną z fromCharCode.
         x = char.charCodeAt(0);
-        if(x < 65 || x > 90) {
-            return String.fromCharCode(x);
+        if(x < 65 || x > 90) { // 65-A 90-Z
+            return String.fromCharCode(x); 
         }
-        else if (x < 78) {
+        else if (x < 78) { // Po wyżej 78 po dodaniu 13, nie wyświetli litery, ponieważ maksymalanie = 90.
             return String.fromCharCode(x + 13);
         }
         else{
@@ -108,8 +107,8 @@ function longestDigit(array){
 function capi(str){
     const newArr = str.toLowerCase().split(' ');
     for(let i = 0; i < newArr.length; i++){
-        newArr[i] = newArr[i].substring(0, 1).toUpperCase() + newArr[i].substring(1);
-    }
+        newArr[i] = newArr[i].substring(0, 1).toUpperCase() + newArr[i].substring(1); //Substring(0,4) dla Javascript = Java. Mozna użyć slice'a.
+    } 
     return newArr.join(' ');
 }
 
@@ -127,14 +126,14 @@ function couponIsValid(enteredCode, currentCode, currentDate, expirationDate){
 	return enteredCode === currentCode && Date.parse(currentDate) <= Date.parse(expirationDate);
 }
 
-// DUBSTEP Find WUB and replace ' '
+// DUBSTEP Find WUB and replace for ' '
 
 function songDecoder(song) {
 	var regExp = /(WUB)+/g;
 	return song.replace(regExp, ' ').trim();
 }
 
-// abcd => ABbCccDddd
+// abcd => A-Bb-Ccc-Dddd
 
 function accum(s){
 	return s.split('')
@@ -142,7 +141,7 @@ function accum(s){
 	.join('-');
 }
 
-// isIsogram ? 
+// isIsogram ? repeated letters = false
 
 function isIsogram(str){
 	
@@ -155,7 +154,7 @@ function isIsogram(str){
   return true
 }
 
-// fizz buzz
+// Fizz Buzz
 
 function fizzbuzz(n){
 	for(let i = 1; i <= n; i++){
@@ -171,7 +170,7 @@ function fizzbuzz(n){
 	}
 }
 
-// sum of digit 
+// Sum of digit 
 
 function sumDigits(number) {
   return Math.abs(number) // moduł
@@ -182,7 +181,7 @@ function sumDigits(number) {
     }, 0); // 0 - wartość początkowa
 }
 
-// is anagram ?
+// Is anagram ?
 
 function isAnagram(stringA, stringB){
 	stringA = stringA.replace(/[^\w]/,'').toLowerCase();
@@ -195,11 +194,13 @@ function isAnagram(stringA, stringB){
 	}
 }
 
-// Alternate capitalization
+// Alternate capitalization. 
 
 function capitalize(s){
 	const odd = s.split('').map((char,index) => index % 2 === 0 ? char.toUpperCase() : char).join('');
+	console.log(odd); // Litera z parzystym indeksem toUpperCase
 	const even = s.split('').map((char,index) => index % 2 !== 0 ? char.toUpperCase() : char).join('');
+	console.log(even); // Litera z nieparzystym indeksem toUpperCase
 	
 	return [odd, even];
 }
@@ -218,7 +219,7 @@ function vowels(str){
 	return numOfVowels;
 }
 
-// Min from digit Test.assertEquals(minValue([1, 3, 1]), 13);
+// Min value from digit Test.assertEquals(minValue([1, 3, 1]), 13);
 
 function minValue(values){
 	newArr = [];
@@ -232,8 +233,10 @@ function minValue(values){
 
 // Two to One
 
+//Take 2 strings s1 and s2 including only letters from a to z. Return a new sorted string, the longest possible, containing distinct letters,
+//each taken only once — coming from s1 or s2.
+
 function longest(s1, s2) {
-  // your code
   var newS1 = [];
   var newS2 = [];
   for(let i = 0; i < s1.length; i++){
@@ -267,10 +270,9 @@ function longest(s1, s2) {
 	return [...str].sort().join('');
 }
 
-// Sort the odd, even (this same place)
+// Sort the odd, even (this same place) 
 
 function sortArray(array) {
-  // Return a sorted array.
   const odd = [];
   const even = [];
   const result = [];
@@ -282,7 +284,7 @@ function sortArray(array) {
   odd.sort((a,b) => a - b);
   
   for(let i = 0; i < array.length; i++){
-    array[i] % 2 === 0 ? result.push(even.shift()) : result.push(odd.shift());
+    array[i] % 2 === 0 ? result.push(even.shift()) : result.push(odd.shift());  // Dodajemy do result pierwszy element z Odd lub Even jednocześnie go usuwając
   }
   return result;
 }
@@ -294,13 +296,13 @@ function solution(str, ending){
   return str.indexOf(ending, num) !== -1;
 }
 
-// uppercase first letter in every word
+// Uppercase first letter in every word
 
 function toJadenCase(str) {
-  return str.split(' ').map(item => item[0].toUpperCase() + item.slice(1)).join(' ');
+  return str.split(' ').map((item) => item[0].toUpperCase() + item.slice(1)).join(' ');
 };
 
-// convert string with - _ to camelCase 
+// Convert string with - _ to camelCase 
 
 function toCamelCase(str){
 	str = str.split('');
@@ -325,14 +327,14 @@ function stray(numbers) {
   }
 }
 
-// array has 3 numbers, return index of mean
+// Array has 3 numbers, return index of mean
 
 var gimme = function (inputArray) {
   let sorted = [...inputArray].sort(function(a,b) {return a-b});
   return inputArray.indexOf(sorted[1]);
 };
 
-// remove duplicat words
+// Remove duplicat words
 
 function removeDuplicateWords (s) {
   const newArr = [];
@@ -345,7 +347,21 @@ function removeDuplicateWords (s) {
   return newArr.join(' ');
 }
 
-// shortest word
+// Remove duplicate words 2
+
+function removeDuplicateWord(str){
+	str = str.toLowerCase().split(' ');
+	const result = [];
+
+	for(let word of str){
+		if(result.indexOf(word) === -1){
+			result.push(word);
+		}
+	}
+	return result.join(' ');
+}
+
+// Shortest word
 
 function findShort(s){
   var arr = s.split(' ');
@@ -359,10 +375,9 @@ function findShort(s){
   return shortest.length;
 }
 
-// remove everything what is behind # in url
+// Remove everything what is behind # in url
 
 function removeUrlAnchor(url){
-  // TODO: complete
   var arr = url.split('');
   for(let i = 0; i < arr.length; i++){
     if(arr[i] === '#'){
@@ -372,13 +387,13 @@ function removeUrlAnchor(url){
   return arr.join('');
 }
 
-// faster way
+// Faster way /\
 
 function removeUrlAnchor(url){
   return url.split('#')[0]; // rozdziela url w miejscu gdzie jest hash i zwraca pierwszy człon czyli [0]
 }
 
-// factorial 
+// Factorial 
 
 function factorial(n){
 	var sum = 1;
@@ -388,7 +403,7 @@ function factorial(n){
 	return sum;
 }
 
-// dashatize odd -- ...
+// Dashatize odd -- ...
 
 function dashatize(num) {
   return num.toString().
@@ -401,14 +416,12 @@ function dashatize(num) {
 // camelCase
 
 function CamelCase(str){
-  //your code here
   return str.split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join('');
 }
 
-// return index of capitalize letter
+// Return index of capitalize letter
 
-var capitals = function (word) {
-	// Write your code here
+function (word) {
   const arr = [];
   const letters = word.split('');
   for(let i = 0; i < letters.length; i++){
@@ -419,13 +432,36 @@ var capitals = function (word) {
   return arr;
 };
 
-// potegowanie rekurencja exponentiation 
+// Exponentiation - potęgowanie rekurencja
 
 function expo(num, e){
 	if(e === 0) return 1;
 	else{
 		return num * expo(num, e-1);
 	}
+}
+
+// Factorial - silnia rekurencja
+
+function factorial(n){
+	if(n === 0) return 1;
+	else{
+		return n * factorial(n-1);
+	}
+}
+
+// Sum with rest
+
+function sum(...nums){
+  return nums.reduce((prevVal, currVal) => {return prevVal + currVal});
+}
+
+// Max number from the digits
+
+function maxNumber(n){
+  const num = n.toString().split('');
+  const sorted = num.sort(function(a,b){return b - a});
+  return parseInt(sorted.join(''));
 }
 
 // FIBONACCI rekurencja
