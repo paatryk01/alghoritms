@@ -7,4 +7,8 @@ export class ArrayUtils {
     public uniq<T>(array: T[], sort: boolean = false): T[]{
         return sort ? [...new Set(array)].sort() : [...new Set(array)];
     }
+
+    public isEmpty(array: any[]): boolean {
+        return array.length === 0;
+    }
 }

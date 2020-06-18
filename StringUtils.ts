@@ -104,4 +104,11 @@ export class StringUtils {
     public startsWits(str: string, start: string): boolean {
         return str.indexOf(start) === 0;
     }
+
+    public uppercaseFirstChar(str: string): string { 
+        if (str === undefined || str.length <= 1) {
+            return str || '';
+        }
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 }

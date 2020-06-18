@@ -1,5 +1,6 @@
+import { ArrayUtils } from './ArrayUtils';
 export class MathUtils {
-    
+
     public factorial(n: number): number {
         let sum = 1;
         for (let i = 1; i <= n; i++) {
@@ -82,5 +83,88 @@ export class MathUtils {
         } else {
             return(hour + timeFormat);
         }
+    }
+
+    public convertToRoman(num: number): string {
+        let romanValue = [];
+        while(true) {
+            if(num >= 1000) {
+                num -= 1000;
+                romanValue.push('M');
+            } else if(num >= 500) {
+                if(num >= 1000-100) {
+                    num -= 1000-100;
+                    romanValue.push('CM');
+                } else {
+                    num -= 500;
+                    romanValue.push('D');
+                }
+            } else if(num >= 100) {
+                if(num >= 500-100) {
+                    num -= 500-100;
+                    romanValue.push('CD');
+                } else {
+                    num -= 100;
+                    romanValue.push('C');
+                }
+            } else if(num >= 50) {
+                if(num >= 100-10) {
+                    num -= 100-10;
+                    romanValue.push('XC');
+                } else {
+                    num -= 50;
+                    romanValue.push('L');
+                }
+            } else if(num >= 10) {
+                if(num >= 50-10) {
+                    num -= 50-10;
+                    romanValue.push('XL')
+                } else {
+                    num -= 10;
+                    romanValue.push('X');
+                }
+            } else if(num >= 5) {
+                if(num >= 10-1) {
+                    num -= 10-1;
+                    romanValue.push('IX');
+                } else {
+                    num -= 5;
+                    romanValue.push('V');
+                }
+            } else if(num >= 1) {
+                if(num >= 5-1) {
+                    num -= 5-1;
+                    romanValue.push('IV');
+                } else {
+                    num -= 1;
+                    romanValue.push('I');
+                }
+            } else {
+                break;
+            } 
+        } return romanValue.join('');
+    }
+    
+    public baseConverter(decNumber: number, base: number): string {
+        const remStack = [];
+        const digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let number = decNumber;
+        let rem;
+        let baseString = '';
+        
+        if(!(base >= 2 && base <= 36)) {
+            return '';
+        }
+
+        while(number > 0) {
+            rem = Math.floor(number & base);
+            remStack.push(rem);
+            number = Math.floor(number / base);
+        }
+
+        while(!remStack.isEmpty()) {
+            baseString += digits[remStack.pop()];
+        }
+        return baseString;
     }
 }
